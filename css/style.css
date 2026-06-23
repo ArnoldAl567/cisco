@@ -89,13 +89,14 @@ details > summary {
   height: 80px;
   align-items: center;
   justify-content: center;
-  border: 2px solid #049FD9;
+  border: 1px solid #dbe4ef;
   background: white;
   padding: 8px;
-  transition: transform .2s ease, box-shadow .2s ease;
+  transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
 .thumb-card:hover {
+  border-color: #049FD9;
   transform: translateY(-1px);
   box-shadow: 0 8px 20px rgba(4, 159, 217, .12);
 }
@@ -153,6 +154,91 @@ details > summary {
   max-height: 240px;
   max-width: 100%;
   object-fit: contain;
+}
+
+.image-modal-panel {
+  display: flex;
+  width: min(90vw, 900px);
+  height: min(86vh, 900px);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+}
+
+.modal-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.modal-close-button {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  z-index: 2;
+  display: inline-flex;
+  height: 42px;
+  width: 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .9);
+  color: #fff;
+  font-size: 30px;
+  line-height: 1;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.modal-close-button:hover {
+  background: #000;
+  transform: scale(1.04);
+}
+
+.modal-nav-button {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: inline-flex;
+  height: 44px;
+  width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .72);
+  color: #fff;
+  font-size: 18px;
+  transform: translateY(-50%);
+  transition: background .2s ease, transform .2s ease;
+}
+
+.modal-nav-button:hover {
+  background: #000;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.modal-nav-prev {
+  left: 20px;
+}
+
+.modal-nav-next {
+  right: 20px;
+}
+
+.modal-counter {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .86);
+  color: #fff;
+  padding: 6px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  transform: translateX(-50%);
 }
 
 .related-card {

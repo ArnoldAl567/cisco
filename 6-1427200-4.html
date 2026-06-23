@@ -210,18 +210,14 @@
                 class="max-h-[255px] max-w-full cursor-pointer object-contain transition hover:opacity-90"
                 onclick="viewImage(this.src)" />
             </div>
-            <div class="mt-3 grid grid-cols-3 gap-2">
-              <button type="button" class="thumb-card ring-2 ring-ds3" aria-label="Vista del cable">
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <button type="button" class="thumb-card" aria-label="Vista del cable">
                 <img src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg" alt="Vista del cable"
                   class="h-full w-full object-contain" onclick="toExchangeImage(this)" />
               </button>
               <button type="button" class="thumb-card" aria-label="Caja reel-in-box">
                 <img src="https://www.ds3comunicaciones.com/AMP/images/Caja.jpg" alt="Caja reel-in-box"
                   class="h-full w-full object-contain" onclick="toExchangeImage(this)" />
-              </button>
-              <button type="button" class="thumb-card" aria-label="Vista ampliada del cable">
-                <img src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg" alt="Cable AMP Categoria 6"
-                  class="h-full w-full object-contain" onclick="viewImage(this.src)" />
               </button>
             </div>
             <p class="mt-3 text-center text-xs italic text-slate-400">Foto Referencial</p>
@@ -269,20 +265,14 @@
       </section>
 
       <section id="images-section" class="mx-auto hidden max-w-[980px]">
-        <div class="grid justify-center gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div class="grid justify-center gap-4 md:grid-cols-2">
           <button type="button" class="gallery-card"
-            onclick="viewImage('https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg')">
+            onclick="viewGalleryImage(0)">
             <img src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg"
               alt="Cable UTP AMP 6-1427200-4" />
           </button>
-          <button type="button" class="gallery-card"
-            onclick="viewImage('https://www.ds3comunicaciones.com/AMP/images/Caja.jpg')">
+          <button type="button" class="gallery-card" onclick="viewGalleryImage(1)">
             <img src="https://www.ds3comunicaciones.com/AMP/images/Caja.jpg" alt="Caja reel-in-box AMP" />
-          </button>
-          <button type="button" class="gallery-card"
-            onclick="viewImage('https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg')">
-            <img src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg"
-              alt="Vista referencial Cable AMP Cat 6" />
           </button>
         </div>
       </section>
@@ -461,9 +451,21 @@
   </footer>
 
   <div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4">
-    <button type="button" class="absolute right-4 top-4 text-3xl text-white" aria-label="Cerrar imagen"
-      onclick="closeModal()">&times;</button>
-    <img id="modal-image" class="max-h-full max-w-full object-contain" src="" alt="Imagen ampliada" />
+    <button type="button" class="modal-close-button" aria-label="Cerrar imagen" onclick="closeModal()">
+      &times;
+    </button>
+    <button type="button" class="modal-nav-button modal-nav-prev" aria-label="Imagen anterior"
+      onclick="moveModalImage(-1)">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <div class="image-modal-panel">
+      <img id="modal-image" class="modal-image" src="" alt="Imagen ampliada" />
+    </div>
+    <button type="button" class="modal-nav-button modal-nav-next" aria-label="Imagen siguiente"
+      onclick="moveModalImage(1)">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <div id="modal-counter" class="modal-counter">1 / 1</div>
   </div>
 
   <script src="./js/change_tabs.js"></script>

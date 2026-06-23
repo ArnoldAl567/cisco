@@ -23,15 +23,73 @@ function toExchangeImage(image) {
   mainImage.alt = image.alt || mainImage.alt;
 }
 
+let currentModalIndex = 0;
+let galleryImages = [];
+
+function getGalleryImages() {
+  if (!galleryImages.length) {
+    galleryImages = Array.from(document.querySelectorAll('#images-section img')).map((image) => ({
+      src: image.src,
+      alt: image.alt || 'Imagen ampliada'
+    }));
+  }
+
+  return galleryImages;
+}
+
+function setModalImage(index) {
+  const images = getGalleryImages();
+  const modalImage = document.getElementById('modal-image');
+  const modalCounter = document.getElementById('modal-counter');
+  if (!modalImage || !images.length) return;
+
+  currentModalIndex = (index + images.length) % images.length;
+  modalImage.src = images[currentModalIndex].src;
+  modalImage.alt = images[currentModalIndex].alt;
+  if (modalCounter) modalCounter.textContent = `${currentModalIndex + 1} / ${images.length}`;
+}
+
+function openModal() {
+  const modal = document.getElementById('image-modal');
+  if (!modal) return;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function viewGalleryImage(index) {
+  setModalImage(index);
+  openModal();
+}
+
 function viewImage(src) {
   const modal = document.getElementById('image-modal');
   const modalImage = document.getElementById('modal-image');
   if (!modal || !modalImage || !src) return;
 
-  modalImage.src = src;
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
-  document.body.style.overflow = 'hidden';
+  const images = getGalleryImages();
+  const imageIndex = images.findIndex((image) => image.src === src);
+
+  if (imageIndex >= 0) {
+    setModalImage(imageIndex);
+  } else {
+    modalImage.src = src;
+    modalImage.alt = 'Imagen ampliada';
+    const modalCounter = document.getElementById('modal-counter');
+    if (modalCounter) modalCounter.textContent = '1 / 1';
+  }
+
+  openModal();
+}
+
+function moveModalImage(direction) {
+  const modal = document.getElementById('image-modal');
+  if (!modal || modal.classList.contains('hidden')) return;
+
+  const images = getGalleryImages();
+  if (images.length < 2) return;
+  setModalImage(currentModalIndex + direction);
 }
 
 function closeModal() {
@@ -95,6 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeModal();
+    if (event.key === 'ArrowLeft') moveModalImage(-1);
+    if (event.key === 'ArrowRight') moveModalImage(1);
   });
 
   initializeWhatsappMessage();
