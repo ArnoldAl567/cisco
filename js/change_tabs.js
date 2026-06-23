@@ -2,27 +2,17 @@ function setProductTab(activeTab) {
   const productTab = document.getElementById('product-tab');
   const imagesTab = document.getElementById('images-tab');
   const productSection = document.getElementById('information-section');
+  const productPanel = document.getElementById('product-content') || productSection;
   const imagesSection = document.getElementById('images-section');
 
   if (!productTab || !imagesTab || !productSection || !imagesSection) return;
 
   const showImages = activeTab === 'images';
-  productSection.classList.toggle('hidden', showImages);
+  productPanel.classList.toggle('hidden', showImages);
   imagesSection.classList.toggle('hidden', !showImages);
 
-  productTab.classList.toggle('bg-blue-600', !showImages);
-  productTab.classList.toggle('text-white', !showImages);
-  productTab.classList.toggle('bg-slate-100', showImages);
-  productTab.classList.toggle('bg-gray-100', showImages);
-  productTab.classList.toggle('text-slate-700', showImages);
-  productTab.classList.toggle('text-gray-700', showImages);
-
-  imagesTab.classList.toggle('bg-blue-600', showImages);
-  imagesTab.classList.toggle('text-white', showImages);
-  imagesTab.classList.toggle('bg-slate-100', !showImages);
-  imagesTab.classList.toggle('bg-gray-100', !showImages);
-  imagesTab.classList.toggle('text-slate-700', !showImages);
-  imagesTab.classList.toggle('text-gray-700', !showImages);
+  productTab.classList.toggle('is-active', !showImages);
+  imagesTab.classList.toggle('is-active', showImages);
 }
 
 function toExchangeImage(image) {
@@ -55,6 +45,40 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
+function initializeWhatsappMessage() {
+  const messageInput = document.getElementById('whatsapp-message');
+  const sendButton = document.getElementById('whatsapp-send');
+  const charCount = document.getElementById('whatsapp-char-count');
+  const storageKey = 'ds3_amp_6-1427200-4_whatsapp_message';
+  const phone = '994428965';
+  const defaultMessage = 'Hola, tengo una consulta sobre el cable 6-1427200-4';
+
+  if (!messageInput || !sendButton) return;
+
+  function buildMessage() {
+    const customMessage = messageInput.value.trim();
+    if (!customMessage) return defaultMessage;
+    return `${defaultMessage}: ${customMessage}`;
+  }
+
+  function updateWhatsappLink() {
+    const message = buildMessage();
+    sendButton.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    if (charCount) charCount.textContent = `${messageInput.value.length}/500`;
+  }
+
+  const savedMessage = localStorage.getItem(storageKey);
+  if (savedMessage) messageInput.value = savedMessage;
+  updateWhatsappLink();
+
+  messageInput.addEventListener('input', () => {
+    localStorage.setItem(storageKey, messageInput.value);
+    updateWhatsappLink();
+  });
+
+  sendButton.addEventListener('click', updateWhatsappLink);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const productTab = document.getElementById('product-tab');
   const imagesTab = document.getElementById('images-tab');
@@ -72,4 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeModal();
   });
+
+  initializeWhatsappMessage();
 });
