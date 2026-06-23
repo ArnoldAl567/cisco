@@ -21,6 +21,7 @@ function toExchangeImage(image) {
 
   mainImage.src = image.src;
   mainImage.alt = image.alt || mainImage.alt;
+  mainImage.dataset.hdSrc = image.dataset.hdSrc || image.src;
 }
 
 let currentModalIndex = 0;
@@ -29,7 +30,7 @@ let galleryImages = [];
 function getGalleryImages() {
   if (!galleryImages.length) {
     galleryImages = Array.from(document.querySelectorAll('#images-section img')).map((image) => ({
-      src: image.src,
+      src: image.dataset.hdSrc || image.src,
       alt: image.alt || 'Imagen ampliada'
     }));
   }

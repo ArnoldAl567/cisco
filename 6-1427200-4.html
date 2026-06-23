@@ -205,18 +205,18 @@
 
           <article class="rounded-md border border-slate-200 bg-white p-3 shadow-sm">
             <div class="flex min-h-[260px] items-center justify-center">
-              <img id="img_main" src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg"
+              <img id="img_main" src="./images/AMP/6-1427200-4-1.jpg" data-hd-src="./images/AMP/6-1427200-4-1.jpg"
                 alt="Cable UTP AMP Categoria 6 CMR 6-1427200-4"
                 class="max-h-[255px] max-w-full cursor-pointer object-contain transition hover:opacity-90"
-                onclick="viewImage(this.src)" />
+                onclick="viewImage(this.dataset.hdSrc || this.src)" />
             </div>
             <div class="mt-3 grid grid-cols-2 gap-2">
               <button type="button" class="thumb-card" aria-label="Vista del cable">
-                <img src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg" alt="Vista del cable"
+                <img src="./images/AMP/6-1427200-4-1.jpg" data-hd-src="./images/AMP/6-1427200-4-1.jpg" alt="Vista del cable"
                   class="h-full w-full object-contain" onclick="toExchangeImage(this)" />
               </button>
               <button type="button" class="thumb-card" aria-label="Caja reel-in-box">
-                <img src="https://www.ds3comunicaciones.com/AMP/images/Caja.jpg" alt="Caja reel-in-box"
+                <img src="./images/AMP/Caja.jpg" data-hd-src="./images/AMP/Caja.jpg" alt="Caja reel-in-box"
                   class="h-full w-full object-contain" onclick="toExchangeImage(this)" />
               </button>
             </div>
@@ -268,11 +268,11 @@
         <div class="grid justify-center gap-4 md:grid-cols-2">
           <button type="button" class="gallery-card"
             onclick="viewGalleryImage(0)">
-            <img src="https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg"
+            <img src="./images/AMP/6-1427200-4-1.jpg" data-hd-src="./images/AMP/6-1427200-4-1.jpg"
               alt="Cable UTP AMP 6-1427200-4" />
           </button>
           <button type="button" class="gallery-card" onclick="viewGalleryImage(1)">
-            <img src="https://www.ds3comunicaciones.com/AMP/images/Caja.jpg" alt="Caja reel-in-box AMP" />
+            <img src="./images/AMP/Caja.jpg" data-hd-src="./images/AMP/Caja.jpg" alt="Caja reel-in-box AMP" />
           </button>
         </div>
       </section>
@@ -309,8 +309,8 @@
         <div class="mt-5 grid gap-5 md:grid-cols-3">
           <a href="https://www.ds3comunicaciones.com/AMP/1859345-2.html" target="_blank" class="related-card">
             <div class="related-img">
-              <img src="https://www.ds3comunicaciones.com/AMP/images/Caja.jpg" alt="1859345-2"
-                onerror="this.onerror=null; this.src='https://www.ds3comunicaciones.com/AMP/images/6-1427200-4-1.jpg';" />
+              <img src="./images/AMP/Caja.jpg" alt="1859345-2"
+                onerror="this.onerror=null; this.src='./images/AMP/6-1427200-4-1.jpg';" />
             </div>
             <div class="border-t pt-3">
               <h3>1859345-2</h3>
@@ -325,7 +325,7 @@
           <a href="https://www.ds3comunicaciones.com/AMP/1427254-4.html" target="_blank" class="related-card">
             <div class="related-img">
               <img src="https://www.ds3comunicaciones.com/AMP/images/1427254-4-1.jpg" alt="1427254-4"
-                onerror="this.onerror=null; this.src='https://www.ds3comunicaciones.com/AMP/images/Caja.jpg';" />
+                onerror="this.onerror=null; this.src='./images/AMP/Caja.jpg';" />
             </div>
             <div class="border-t pt-3">
               <h3>1427254-4</h3>
@@ -401,18 +401,8 @@
     </section>
 
     <aside class="hidden lg:block">
-      <div class="sticky top-4 rounded-lg border border-slate-200 bg-white p-3 shadow-sm">
-        <h2 class="mb-3 text-lg font-bold leading-snug text-slate-950">Listas de Precios<br />(Fibra)</h2>
-        <div class="space-y-2">
-          <a class="price-link" href="https://www.ds3comunicaciones.com/AMP/precios_amp.html" target="_blank">Lista AMP</a>
-          <a class="price-link" href="https://www.ds3comunicaciones.com/amphenol/precios_amphenol.html" target="_blank">Lista Amphenol</a>
-          <a class="price-link" href="https://www.ds3comunicaciones.com/cisco/precios_cisco_b.html" target="_blank">Lista CISCO</a>
-          <a class="price-link" href="https://www.ds3comunicaciones.com/mikrotik/precios_mikrotik.html" target="_blank">Lista MikroTik</a>
-          <a class="price-link" href="https://www.ds3comunicaciones.com/panduit/precios_panduit.html" target="_blank">Lista Panduit</a>
-          <a class="price-link" href="https://www.ds3comunicaciones.com/siemon/precios_siemon.html" target="_blank">Lista Siemon</a>
-          <a class="price-link" href="https://www.ds3comunicaciones.com/ubiquiti/precios_ubiquiti.html" target="_blank">Lista Ubiquiti</a>
-        </div>
-      </div>
+      <iframe src="./lista_fibra.html" title="Listas de Precios Fibra"
+        class="sticky top-4 h-[560px] w-full border-0" loading="lazy" scrolling="no"></iframe>
     </aside>
   </main>
 
