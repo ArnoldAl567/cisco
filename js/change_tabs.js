@@ -138,10 +138,56 @@ function initializeWhatsappMessage() {
   sendButton.addEventListener('click', updateWhatsappLink);
 }
 
+function initializeMobileNavigation() {
+  const menuButton = document.getElementById('mobile-menu-button');
+  const closeButton = document.getElementById('mobile-menu-close');
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const menu = document.getElementById('mobile-menu');
+  const searchButton = document.getElementById('mobile-search-button');
+  const searchForm = document.getElementById('mobile-search-form');
+
+  function openMenu() {
+    if (!overlay || !menu) return;
+    overlay.hidden = false;
+    requestAnimationFrame(() => {
+      overlay.classList.add('is-open');
+      menu.classList.add('is-open');
+      menu.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('mobile-menu-open');
+    });
+  }
+
+  function closeMenu() {
+    if (!overlay || !menu) return;
+    overlay.classList.remove('is-open');
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mobile-menu-open');
+    window.setTimeout(() => {
+      if (!overlay.classList.contains('is-open')) overlay.hidden = true;
+    }, 220);
+  }
+
+  if (menuButton) menuButton.addEventListener('click', openMenu);
+  if (closeButton) closeButton.addEventListener('click', closeMenu);
+  if (overlay) overlay.addEventListener('click', closeMenu);
+
+  if (searchButton && searchForm) {
+    searchButton.addEventListener('click', () => {
+      searchForm.classList.toggle('hidden');
+      const input = searchForm.querySelector('input');
+      if (!searchForm.classList.contains('hidden') && input) input.focus();
+    });
+  }
+
+  return { closeMenu };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const productTab = document.getElementById('product-tab');
   const imagesTab = document.getElementById('images-tab');
   const modal = document.getElementById('image-modal');
+  const mobileNavigation = initializeMobileNavigation();
 
   if (productTab) productTab.addEventListener('click', () => setProductTab('product'));
   if (imagesTab) imagesTab.addEventListener('click', () => setProductTab('images'));
@@ -154,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeModal();
+    if (event.key === 'Escape' && mobileNavigation) mobileNavigation.closeMenu();
     if (event.key === 'ArrowLeft') moveModalImage(-1);
     if (event.key === 'ArrowRight') moveModalImage(1);
   });

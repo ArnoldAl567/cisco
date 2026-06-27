@@ -39,7 +39,44 @@
 <body class="bg-white font-sans text-[#24324a]">
   <header class="border-b border-slate-200 bg-white">
     <div class="mx-auto max-w-[1400px] px-4 py-4">
-      <div class="grid gap-4 lg:grid-cols-[330px_minmax(0,1fr)] lg:items-center">
+      <div class="flex items-center justify-between gap-3 lg:hidden">
+        <button id="mobile-menu-button" type="button" class="mobile-header-button" aria-label="Abrir navegacion">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="https://www.ds3comunicaciones.com/" class="flex min-w-0 items-center justify-center gap-3">
+          <img src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg" alt="DS3 Comunicaciones"
+            class="h-11 w-auto object-contain" />
+          <img src="https://www.ds3comunicaciones.com/belden/images/amp_logo2-91x20.jpg" alt="AMP"
+            class="h-7 w-auto object-contain" />
+        </a>
+        <button id="mobile-search-button" type="button" class="mobile-header-button" aria-label="Mostrar busqueda">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+
+      <div class="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm font-medium text-slate-700 lg:hidden">
+        <a href="tel:996533223" class="inline-flex items-center gap-1 hover:text-ds3">
+          <i class="fa-solid fa-phone"></i> 996-533-223
+        </a>
+        <a href="tel:994428965" class="inline-flex items-center gap-1 hover:text-ds3">
+          <i class="fa-solid fa-phone"></i> 994-428-965
+        </a>
+        <a href="mailto:netperu100@hotmail.com" class="inline-flex items-center gap-1 hover:text-ds3">
+          <i class="fa-solid fa-envelope"></i> netperu100@hotmail.com
+        </a>
+      </div>
+
+      <form id="mobile-search-form" class="relative mt-3 hidden lg:hidden"
+        action="https://www.ds3comunicaciones.com/buscar.html">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+        <input type="text" name="q" placeholder="Buscar por PartNumber o descripci&oacute;n..."
+          class="h-10 w-full rounded-full border border-slate-300 bg-white pl-11 pr-12 text-sm outline-none transition focus:border-ds3 focus:ring-2 focus:ring-sky-100" />
+        <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 text-ds3" aria-label="Buscar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      <div class="hidden gap-4 lg:grid lg:grid-cols-[330px_minmax(0,1fr)] lg:items-center">
         <a href="https://www.ds3comunicaciones.com/" class="flex items-center justify-center gap-7 lg:justify-start">
           <img src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg" alt="DS3 Comunicaciones"
             class="h-14 w-auto object-contain" />
@@ -108,6 +145,56 @@
     </nav>
   </header>
 
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay lg:hidden" hidden></div>
+  <aside id="mobile-menu" class="mobile-menu-panel lg:hidden" aria-hidden="true">
+    <div class="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+      <a href="https://www.ds3comunicaciones.com/" class="flex items-center gap-3">
+        <img src="https://www.ds3comunicaciones.com/mikrotik/images/Logo1.jpg" alt="DS3 Comunicaciones"
+          class="h-10 w-auto object-contain" />
+        <img src="https://www.ds3comunicaciones.com/belden/images/amp_logo2-91x20.jpg" alt="AMP"
+          class="h-7 w-auto object-contain" />
+      </a>
+      <button id="mobile-menu-close" type="button" class="text-2xl text-slate-500 hover:text-ds3"
+        aria-label="Cerrar navegacion">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div class="space-y-6 px-6 py-6">
+      <section>
+        <h2 class="mobile-menu-title">Categor&iacute;as</h2>
+        <nav class="mt-3 grid gap-2">
+          <a href="https://www.ds3comunicaciones.com/" class="mobile-menu-link">
+            <i class="fa-solid fa-house text-ds3"></i> Home DS3
+          </a>
+          <a href="./lista_fibra.html" class="mobile-menu-link">Lista de Precios AMP</a>
+          <a href="https://www.ds3comunicaciones.com/AMP/index.html#cablecat6" class="mobile-menu-link">Cable Cat 6</a>
+          <a href="https://www.ds3comunicaciones.com/AMP/index.html#cablecat6a" class="mobile-menu-link">Cable Cat 6A</a>
+          <a href="https://www.ds3comunicaciones.com/AMP/index.html" class="mobile-menu-link">Conectividad AMP</a>
+          <a href="https://www.ds3comunicaciones.com/pedido.html" class="mobile-menu-link">Pedidos</a>
+        </nav>
+      </section>
+      <section>
+        <h2 class="mobile-menu-title">Contacto</h2>
+        <div class="mt-3 space-y-4 text-sm font-semibold text-slate-900">
+          <a href="tel:5334339" class="flex items-start gap-3">
+            <i class="fa-solid fa-phone mt-1 text-ds3"></i>
+            <span>533-4339<br /><small class="font-medium text-slate-500">994-428-965</small></span>
+          </a>
+          <a href="tel:996533223" class="flex items-start gap-3">
+            <i class="fa-solid fa-phone mt-1 text-ds3"></i>
+            <span>99653-3223<br /><small class="font-medium text-slate-500">937-514-867</small></span>
+          </a>
+          <a href="mailto:netperu100@hotmail.com" class="flex items-center gap-3">
+            <i class="fa-solid fa-envelope text-ds3"></i> netperu100@hotmail.com
+          </a>
+          <p class="flex items-center gap-3">
+            <i class="fa-solid fa-location-dot text-ds3"></i> Lima, PER&Uacute;
+          </p>
+        </div>
+      </section>
+    </div>
+  </aside>
+
   <main class="mx-auto grid max-w-[1900px] gap-5 px-3 py-4 lg:grid-cols-[305px_minmax(0,1fr)_205px]">
     <aside class="hidden lg:block">
       <div class="sticky top-4 rounded-lg border border-slate-200 bg-white p-4 shadow-lg shadow-slate-200/70">
@@ -173,7 +260,7 @@
       <section id="information-section" class="space-y-5">
         <div id="product-content" class="mx-auto max-w-[1230px] space-y-5">
         <div class="grid gap-4 xl:grid-cols-[minmax(0,1fr)_385px]">
-          <article class="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+          <article class="order-2 rounded-md border border-slate-200 bg-white p-5 shadow-sm xl:order-1">
             <h1 class="product-title text-2xl font-bold leading-tight text-ds3-ink">
               Cable UTP AMP Categor&iacute;a 6 Chaqueta CMR 23AWG, marca AMP modelo: 6-1427200-4
             </h1>
@@ -203,8 +290,8 @@
             </a>
           </article>
 
-          <article class="rounded-md border border-slate-200 bg-white p-3 shadow-sm">
-            <div class="flex min-h-[260px] items-center justify-center">
+          <article class="product-image-card order-1 rounded-md border border-slate-200 bg-white p-3 shadow-sm xl:order-2">
+            <div class="product-image-frame flex min-h-[260px] items-center justify-center">
               <img id="img_main" src="./images/AMP/6-1427200-4-1.jpg" data-hd-src="./images/AMP/6-1427200-4-1.jpg"
                 alt="Cable UTP AMP Categoria 6 CMR 6-1427200-4"
                 class="max-h-[255px] max-w-full cursor-pointer object-contain transition hover:opacity-90"
